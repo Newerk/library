@@ -27,11 +27,9 @@ function addBookToLibrary() {
 
 //build a "card" that diplays the book on the website
 function displayBooks() {
-let card = document.createElement('div');
-card.className = 'book';
-card.setAttribute('style', 'border: 2px solid black; ')
-card.textContent = "THE HOBBIT";
-
-main.append(card);
+    let card = document.createElement('div');
+    card.className = 'book';
+    card.textContent = "THE HOBBIT";
+    main.append(card);
 
 }

@@ -4,19 +4,27 @@
 }
 
 body {
-    height: 100vh;
     display: grid;
     grid-template-columns: 1fr 4fr;
     grid-template-rows: 6rem 1fr;
+    height: 100vh;
+
 }
 
 .header {
+position: sticky;
+top: 0;
+background-color: rgb(131, 37, 37);
+
     border: 2px solid black;
 
     grid-area: 1 / 1 / 2 / 3;
 }
 
 .sidebar {
+
+    position: fixed;
+    top: 6rem;
     border: 2px solid black;
     grid-area: 2 / 1 / 3 / 2;
 
@@ -27,12 +35,13 @@ body {
     grid-area: 2 / 2 / 3 / 3;
 
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-    grid-auto-flow: row;
-    gap: 20px;
+    grid-template-columns: repeat(6, 1fr);
+    grid-auto-rows: max-content;
+
+
 }
 
 .book {
-    height: clamp(15vh, 35vh, 400px);
-
+    height: 35vh;
+    border: 2px solid black;
 }
