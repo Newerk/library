@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,12 +8,31 @@
     <link rel="stylesheet" href="style.css">
     <title>Library</title>
 </head>
+
 <body>
     <div class="header">
+        <form action="">
+            <label for="bk_title">Title
+                <input type="text" name="title" id="bk_title"  required>
+            </label>
+
+            <label for="bk_author">Author
+                <input type="text" name="author" id="bk_author" required>
+            </label>
+
+            <label for="bk_pages">Pages
+                <input type="number" name="pages" id="bk_pages" required> 
+            </label>
+
+        </form>
+        <button onclick="addBookToLibrary()">Add Book</button>
+
+
 
     </div>
     <div class="sidebar">
-        <button class="add-book" onclick="displayBooks()">Add Book</button>
+
+
 
     </div>
     <div class="main">
@@ -22,4 +42,5 @@
 
     <script src="script.js"></script>
 </body>
+
 </html>
