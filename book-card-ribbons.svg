@@ -1,0 +1,17 @@
+<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 595.07 793.41">
+    <defs>
+        <style>.cls-1{fill:#542c0e;}.cls-1,.cls-2,.cls-3,.cls-4,.cls-5,.cls-6{stroke:#231f20;stroke-miterlimit:10;stroke-width:8px;}.cls-2{fill:#fff;}.cls-3{fill:none;}.cls-4{fill:#da1f26;}.cls-5{fill:#056d38;}.cls-6{fill:#f7ec16;}</style>
+    </defs>
+    <rect id="back-cover" class="cls-1" x="4.07" y="72.26" width="500.26" height="641.88" />
+    <polygon id="back-cover-2" data-name="back-cover" class="cls-2" points="576.03 636.62 494.23 698.3 4.07 698.3 15.4 56.42 576.03 64 576.03 636.62" />
+    <rect id="top-cover" class="cls-1" x="90.8" y="4.41" width="500.26" height="641.88" />
+    <path class="cls-1" d="M-36.77,552.59" transform="translate(-0.21 0.41)" />
+    <path class="cls-3" d="M91,645.88" transform="translate(-0.21 0.41)" />
+    <path class="cls-3" d="M4.28,713.73" transform="translate(-0.21 0.41)" />
+    <path class="cls-1" d="M91,645.88c-40.74,0-78.25,6.63-86.73,67.85V71.86C16.44,23,43.61,8.62,91,4Z" transform="translate(-0.21 0.41)" />
+    <line class="cls-3" x1="79.69" y1="665.22" x2="536.14" y2="665.22" />
+    <line class="cls-3" x1="459.75" y1="757.81" x2="459.75" y2="758.31" />
+    <path id="red-riddon" class="cls-4" d="M504.54,789c-17.26,0-32.94-36.3-50.2-36.3-16.2,0-34,36.3-50.2,36.3V664.82h100.4Z" transform="translate(-0.21 0.41)" />
+    <path id="green-ribbon" class="cls-5" d="M347.84,789c-17.26,0-32.94-36.3-50.2-36.3-16.21,0-34,36.3-50.2,36.3V664.82h100.4Z" transform="translate(-0.21 0.41)" />
+    <path id="yellow-ribbon" class="cls-6" d="M188.86,789c-17.26,0-32.94-36.3-50.2-36.3-16.2,0-34,36.3-50.2,36.3V664.82h100.4Z" transform="translate(-0.21 0.41)" />
+</svg>

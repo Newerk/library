@@ -1,6 +1,7 @@
 * {
     margin: 0;
     padding: 0;
+    outline: none;
 }
 
 body {
@@ -8,15 +9,24 @@ body {
     grid-template-columns: 1fr 4fr;
     grid-template-rows: 6rem 1fr;
     height: 100vh;
+    background-color: #282F39;
 
 }
 
 .header {
-position: sticky;
-top: 0;
-background-color: rgb(131, 37, 37);
+    position: fixed;
+    top: 0;
+    z-index: 1;
+    width: 100%;
+    height: 6rem;
+    background-color: rgb(131, 37, 37);
 
-    border: 2px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+
+    /* border: 2px solid black; */
 
     grid-area: 1 / 1 / 2 / 3;
 }
@@ -24,13 +34,20 @@ background-color: rgb(131, 37, 37);
 .sidebar {
 
     position: fixed;
-    top: 6rem;
-    height: 100vh;
+    top: 0;
+    height: 100%;
     width: 20vw;
     border-right: 2px solid black;
     grid-area: 2 / 1 / 3 / 2;
     background-color: #282F39;
 
+    display: grid;
+    grid-template-rows: 6rem 1fr;
+
+}
+
+.red-bg {
+    background-color: rgb(131, 37, 37);
 }
 
 .main {
@@ -39,10 +56,10 @@ background-color: rgb(131, 37, 37);
     grid-area: 2 / 2 / 3 / 3;
 
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(230px,1fr));
+    grid-template-columns: repeat(auto-fill, max(170px));
     padding: 2rem;
     grid-auto-rows: max-content;
-    column-gap: 4rem;
+    column-gap: 3rem;
     row-gap: 2rem;
 
 
@@ -57,6 +74,52 @@ background-color: rgb(131, 37, 37);
     justify-content: center;
     align-items: center;
 
-    background-color: rgb(72, 25, 0);
+    background-image: url('book-card-ribbons.svg');
+    background-repeat: no-repeat;
+    /* background-color: rgb(72, 25, 0); */
     color: darkorange;
+
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+    text-align: center;
+    column-gap: 10px;
+}
+
+.title {
+    grid-row: 2;
+}
+
+.author {
+
+    grid-row: 3;
+
+}
+
+.pages {
+    grid-row: 4;
+}
+
+input {
+
+    height: 2.5rem;
+}
+
+form {
+    display: flex;
+    gap: 5rem;
+}
+
+.icon-container {
+    border: 3px solid black;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr );
+
+    grid-row: 5;
+    grid-column: 1 / span 5;
+}
+
+.icon {
+    width: 1.5rem;
+    height: 1.5rem;;
 }
