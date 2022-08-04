@@ -30,6 +30,10 @@ function buildCard(bkTitle, bkAuthor, bkPages) {
     let card = document.createElement('div');
     card.className = 'book';
 
+
+    let bookContainer = document.createElement('div');
+    bookContainer.className = "book-container";
+
     let title = document.createElement('div');
     title.className = 'title';
     title.textContent = bkTitle;
@@ -68,9 +72,12 @@ function buildCard(bkTitle, bkAuthor, bkPages) {
     iconContainer.appendChild(favBtn);
     iconContainer.appendChild(readBtn);
 
-    card.appendChild(title);
-    card.appendChild(author);
-    card.appendChild(pages);
+
+    bookContainer.appendChild(title);
+    bookContainer.appendChild(author);
+    bookContainer.appendChild(pages);
+    
+    card.appendChild(bookContainer);
     card.appendChild(iconContainer);
 
     main.append(card);

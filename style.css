@@ -56,9 +56,10 @@ body {
     grid-area: 2 / 2 / 3 / 3;
 
     display: grid;
-    grid-template-columns: repeat(auto-fill, max(170px));
+    grid-template-columns: repeat(auto-fill, max(10vw));
+    grid-template-columns: repeat(auto-fill, max(20vh));
+
     padding: 2rem;
-    grid-auto-rows: max-content;
     column-gap: 3rem;
     row-gap: 2rem;
 
@@ -68,16 +69,17 @@ body {
 .book {
     height: 35vh;
     border: 2px solid black;
-    display: flex;
-    flex-direction: column;
-
-    justify-content: center;
-    align-items: center;
-
     background-image: url('book-card-ribbons.svg');
     background-repeat: no-repeat;
-    /* background-color: rgb(72, 25, 0); */
     color: darkorange;
+}
+
+.book-container {
+    border: 2px solid yellow;
+    height: 21vh;
+    width: 11vw;
+    margin-left: 1.7vw;
+
 
     display: grid;
     grid-template-columns: repeat(5, 1fr);
@@ -113,7 +115,7 @@ form {
 .icon-container {
     border: 3px solid black;
     display: grid;
-    grid-template-columns: repeat(3, 1fr );
+    grid-template-columns: repeat(3, auto );
 
     grid-row: 5;
     grid-column: 1 / span 5;
