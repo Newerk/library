@@ -2,13 +2,18 @@ let main = document.querySelector('.main');
 let inputValues = {};
 let myLibrary = [];
 
+let cardIndexCounter = 0;
+// myLibrary.length;
+
+
 
 displayBooks();
 
-function Book(title, author, pages) {
+function Book(title, author, pages, index) {
     this.title = title;
     this.author = author;
     this.pages = parseInt(pages);
+    this.index = index;
 }
 
 function addBookToLibrary() {
@@ -18,7 +23,11 @@ function addBookToLibrary() {
         bkPages: document.querySelector("#bk_pages").value
     }
 
-    let newBook = new Book(inputValues.bkTitle, inputValues.bkAuthor, parseInt(inputValues.bkPages));
+    let newBook = new Book(inputValues.bkTitle, inputValues.bkAuthor, parseInt(inputValues.bkPages), cardIndexCounter);
+    cardIndexCounter+=1;
+
+    // Book.prototype.index = myLibrary.length;
+    
     myLibrary.push(newBook);
     console.log(myLibrary);
     displayBooks();
@@ -27,30 +36,36 @@ function addBookToLibrary() {
 }
 
 function buildCard(bkTitle, bkAuthor, bkPages) {
-    
-        let card = document.createElement('div');
-        card.className = 'book';
+    // if (document.getElementById(`cardIndex_0`) !== null) {//if id cardIndex_0 exists, do count+=1;
+    //     cardIndexCounter += 1;
+    //     // if (document.getElementById(`cardIndex_${cardIndexCounter}`) !== null) {
+    //     //     cardIndexCounter += 1;
+    //     // }
+    // }
 
+    let card = document.createElement('div');
+    card.className = 'book';
+    // card.id = `cardIndex_${cardIndexCounter}`
 
-        let bookCover = document.createElement('div');
-        bookCover.className = "book-cover";
+    let bookCover = document.createElement('div');
+    bookCover.className = "book-cover";
 
-        let title = document.createElement('div');
-        title.className = 'title';
-        title.textContent = bkTitle;
+    let title = document.createElement('div');
+    title.className = 'title';
+    title.textContent = bkTitle;
 
-        let author = document.createElement('div');
-        author.className = 'author';
-        author.textContent = bkAuthor;
+    let author = document.createElement('div');
+    author.className = 'author';
+    author.textContent = bkAuthor;
 
-        let pages = document.createElement('div');
-        pages.className = 'pages';
-        pages.textContent = parseInt(bkPages);
+    let pages = document.createElement('div');
+    pages.className = 'pages';
+    pages.textContent = parseInt(bkPages);
 
-        bookCover.appendChild(title);
-        bookCover.appendChild(author);
-        bookCover.appendChild(pages);
-    
+    bookCover.appendChild(title);
+    bookCover.appendChild(author);
+    bookCover.appendChild(pages);
+
 
     let iconContainer = document.createElement('div');
     iconContainer.className = "icon-container";
@@ -72,8 +87,6 @@ function buildCard(bkTitle, bkAuthor, bkPages) {
     iconContainer.appendChild(favBtn);
 
 
-
-
     card.appendChild(bookCover);
     card.appendChild(iconContainer);
 
@@ -93,9 +106,23 @@ function displayBooks() {
     myLibrary.forEach(el => {
         buildCard(el.title, el.author, parseInt(el.pages));
     });
+
 }
 
 function removeBook() {
-    delete myLibrary[9/*filler index. need to find a way to filter which index needs to be deleted*/];
-}
+        let listOfTitles = [];
+        myLibrary.forEach(el => {
+            listOfTitles.push(el.title);
+        })
+        if (document.g) {//get DOM element
+            null
+        }
+        // if(){//if NOT the title of book we want to delete, return a list of books that DONT include the title searched
+        console.log(listOfTitles);
+
+        }
+
+   
+
+    // delete myLibrary[9/*filler index. need to find a way to filter which index needs to be deleted*/];
 
