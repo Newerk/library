@@ -31,8 +31,8 @@ function buildCard(bkTitle, bkAuthor, bkPages) {
     card.className = 'book';
 
 
-    let bookContainer = document.createElement('div');
-    bookContainer.className = "book-container";
+    let bookCover = document.createElement('div');
+    bookCover.className = "book-cover";
 
     let title = document.createElement('div');
     title.className = 'title';
@@ -49,35 +49,11 @@ function buildCard(bkTitle, bkAuthor, bkPages) {
     let iconContainer = document.createElement('div');
     iconContainer.className = "icon-container";
 
-    let garbageBtn = document.createElement('img');
-    garbageBtn.src = "book-icons/trash-2.svg"
-    garbageBtn.alt = "black lined drawing of garbage can"
-    garbageBtn.id = "garbage-btn";
-    garbageBtn.className = "icon";
-
-    let favBtn = document.createElement('img');
-    favBtn.src = "book-icons/heart.svg"
-    favBtn.alt = "black lined drawing of heart"
-    favBtn.id = "fav-btn";
-    favBtn.className = "icon";
-
-    let readBtn = document.createElement('img');
-    readBtn.src = "book-icons/book-open-page-variant-outline.svg"
-    readBtn.alt = "black lined drawing of open book"
-    readBtn.id = "read-btn";
-    readBtn.className = "icon";
-
-
-    iconContainer.appendChild(garbageBtn);
-    iconContainer.appendChild(favBtn);
-    iconContainer.appendChild(readBtn);
-
-
-    bookContainer.appendChild(title);
-    bookContainer.appendChild(author);
-    bookContainer.appendChild(pages);
+    bookCover.appendChild(title);
+    bookCover.appendChild(author);
+    bookCover.appendChild(pages);
     
-    card.appendChild(bookContainer);
+    card.appendChild(bookCover);
     card.appendChild(iconContainer);
 
     main.append(card);
