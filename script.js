@@ -27,32 +27,53 @@ function addBookToLibrary() {
 }
 
 function buildCard(bkTitle, bkAuthor, bkPages) {
-    let card = document.createElement('div');
-    card.className = 'book';
+    
+        let card = document.createElement('div');
+        card.className = 'book';
 
 
-    let bookCover = document.createElement('div');
-    bookCover.className = "book-cover";
+        let bookCover = document.createElement('div');
+        bookCover.className = "book-cover";
 
-    let title = document.createElement('div');
-    title.className = 'title';
-    title.textContent = bkTitle;
+        let title = document.createElement('div');
+        title.className = 'title';
+        title.textContent = bkTitle;
 
-    let author = document.createElement('div');
-    author.className = 'author';
-    author.textContent = bkAuthor;
+        let author = document.createElement('div');
+        author.className = 'author';
+        author.textContent = bkAuthor;
 
-    let pages = document.createElement('div');
-    pages.className = 'pages';
-    pages.textContent = parseInt(bkPages);
+        let pages = document.createElement('div');
+        pages.className = 'pages';
+        pages.textContent = parseInt(bkPages);
+
+        bookCover.appendChild(title);
+        bookCover.appendChild(author);
+        bookCover.appendChild(pages);
+    
 
     let iconContainer = document.createElement('div');
     iconContainer.className = "icon-container";
 
-    bookCover.appendChild(title);
-    bookCover.appendChild(author);
-    bookCover.appendChild(pages);
-    
+    let garbageBtn = document.createElement('div');
+    garbageBtn.id = 'garbage-btn';
+    garbageBtn.className = 'ribbon-btns';
+
+    let readBtn = document.createElement('div');
+    readBtn.id = 'read-btn';
+    readBtn.className = 'ribbon-btns';
+
+    let favBtn = document.createElement('div');
+    favBtn.id = 'fav-btn';
+    favBtn.className = 'ribbon-btns';
+
+    iconContainer.appendChild(garbageBtn);
+    iconContainer.appendChild(readBtn);
+    iconContainer.appendChild(favBtn);
+
+
+
+
     card.appendChild(bookCover);
     card.appendChild(iconContainer);
 

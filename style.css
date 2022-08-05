@@ -73,7 +73,7 @@ body {
     color: darkorange;
 
     display: grid;
-    grid-template-rows:1fr 2.4rem;
+    grid-template-rows: 1fr 2.4rem;
     grid-template-columns: 1.5rem 1fr;
 }
 
@@ -123,34 +123,27 @@ form {
 }
 
 .icon-container {
-    /* border: 3px solid black; */
+    /* border: 1px solid black; */
+    grid-area: 2 / 2 / 3 / 3;
+    margin-right: 1.4rem;
+    margin-left: -.2rem;
+
     display: flex;
+    justify-content: space-between;
+    padding-top: .15rem;
+
+    /* display: flex;
     justify-content: space-evenly;
     padding-left: 9.8%;
-    padding-right: 10.8%;
+    padding-right: 10.8%; */
 
     /* background-color: beige; */
 
 }
 
-/* img {
-    transition: 1s;
-} */
-
-img[id*="fav"] {
-    padding-left: .8%;
-    /* padding-top: 1rem; */
-}
-
-img[src*="trash"]:hover {
-
-    transform: rotate(5deg);
-
-
-
-}
-
-.icon {
-    width: 2.7vw;
-    height: 2.7vh;
+.ribbon-btns {
+    width: 1.8rem;
+    height: 100%;
+    background-color: aqua;
+    opacity: .3;
 }
