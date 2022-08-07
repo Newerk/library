@@ -2,18 +2,12 @@ let main = document.querySelector('.main');
 let inputValues = {};
 let myLibrary = [];
 
-let cardIndexCounter = 0;
-// myLibrary.length;
-
-
-
 displayBooks();
 
-function Book(title, author, pages, index) {
+function Book(title, author, pages) {
     this.title = title;
     this.author = author;
     this.pages = parseInt(pages);
-    this.index = index;
 }
 
 function addBookToLibrary() {
@@ -23,11 +17,8 @@ function addBookToLibrary() {
         bkPages: document.querySelector("#bk_pages").value
     }
 
-    let newBook = new Book(inputValues.bkTitle, inputValues.bkAuthor, parseInt(inputValues.bkPages), cardIndexCounter);
-    cardIndexCounter+=1;
+    let newBook = new Book(inputValues.bkTitle, inputValues.bkAuthor, parseInt(inputValues.bkPages));
 
-    // Book.prototype.index = myLibrary.length;
-    
     myLibrary.push(newBook);
     console.log(myLibrary);
     displayBooks();
@@ -35,32 +26,83 @@ function addBookToLibrary() {
     document.querySelector('form').reset()
 }
 
-function buildCard(bkTitle, bkAuthor, bkPages) {
-    // if (document.getElementById(`cardIndex_0`) !== null) {//if id cardIndex_0 exists, do count+=1;
-    //     cardIndexCounter += 1;
-    //     // if (document.getElementById(`cardIndex_${cardIndexCounter}`) !== null) {
-    //     //     cardIndexCounter += 1;
-    //     // }
-    // }
+function buildCard(title, author, pages) {
+    let card = new Book(title, author, pages);
+    card.buildCard();
+}
 
+
+//displays every object in the library. This function will be invoked when myLibrary array is changed. This will also
+//iterate through the myLibrary array and properly assign index values to the books objects. This can be used
+//to grab the position of the book so that it can be removed from the array list with my function remove()
+function displayBooks() {
+    const clearDisplay = () => {
+        let bookDivs = document.querySelectorAll('.book');
+        bookDivs.forEach(div => div.remove());
+    };
+
+    clearDisplay();
+
+    let indexCounter = 0;
+    myLibrary.forEach(el => {
+        buildCard(el.title, el.author, parseInt(el.pages));
+        console.log(el.title + " is index " + indexCounter++);
+    });
+
+
+}
+
+function removeBook() {
+    myLibrary.forEach(el => {
+        listOfTitles.push(el.title);
+    })
+
+    // if(){//if NOT the title of book we want to delete, return a list of books that DONT include the title searched
+    console.log(listOfTitles);
+
+}
+
+
+
+// delete myLibrary[9/*filler index. need to find a way to filter which index needs to be deleted*/];
+
+
+
+//prototype testing area********
+class Pro {
+    constructor(name) {
+        this.name = name;
+    }
+}
+
+Pro.prototype.returnName = function () {
+    return 'My name is ' + this.name;
+}
+
+
+let person = new Pro('Junius');
+person.returnName();
+
+//goal, build a construstor that will have a build card prototype
+
+Book.prototype.buildCard = function () {
     let card = document.createElement('div');
     card.className = 'book';
-    // card.id = `cardIndex_${cardIndexCounter}`
 
     let bookCover = document.createElement('div');
     bookCover.className = "book-cover";
 
     let title = document.createElement('div');
     title.className = 'title';
-    title.textContent = bkTitle;
+    title.textContent = this.title;
 
     let author = document.createElement('div');
     author.className = 'author';
-    author.textContent = bkAuthor;
+    author.textContent = this.author;
 
     let pages = document.createElement('div');
     pages.className = 'pages';
-    pages.textContent = parseInt(bkPages);
+    pages.textContent = this.pages;
 
     bookCover.appendChild(title);
     bookCover.appendChild(author);
@@ -91,38 +133,7 @@ function buildCard(bkTitle, bkAuthor, bkPages) {
     card.appendChild(iconContainer);
 
     main.append(card);
-}
 
-
-//displays every object in the library. This function will be invoked when myLibrary array is changed
-function displayBooks() {
-    const clearDisplay = () => {
-        let bookDivs = document.querySelectorAll('.book');
-        bookDivs.forEach(div => div.remove());
-    };
-
-    clearDisplay();
-
-    myLibrary.forEach(el => {
-        buildCard(el.title, el.author, parseInt(el.pages));
-    });
 
 }
-
-function removeBook() {
-        let listOfTitles = [];
-        myLibrary.forEach(el => {
-            listOfTitles.push(el.title);
-        })
-        if (document.g) {//get DOM element
-            null
-        }
-        // if(){//if NOT the title of book we want to delete, return a list of books that DONT include the title searched
-        console.log(listOfTitles);
-
-        }
-
-   
-
-    // delete myLibrary[9/*filler index. need to find a way to filter which index needs to be deleted*/];
 
