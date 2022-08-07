@@ -64,34 +64,6 @@ function displayBooks() {
 
 }
 
-
-//gonna call the index value of the book that the remove button was pressed on. it will then 
-//if indexOf(book title) === Book.index(), then delete book and call displayBooks() to update screen
-
-//to test this out, have this button console.log the book title that the button was pressed on
-
-
-
-
-// delete myLibrary[9/*filler index. need to find a way to filter which index needs to be deleted*/];
-
-
-
-//prototype testing area********
-class Pro {
-    constructor(name) {
-        this.name = name;
-    }
-}
-
-Pro.prototype.returnName = function () {
-    return 'My name is ' + this.name;
-}
-
-
-let person = new Pro('Junius');
-person.returnName();
-
 //goal, build a construstor that will have a build card prototype
 
 Book.prototype.buildCard = function () {
@@ -126,9 +98,12 @@ Book.prototype.buildCard = function () {
     let garbageBtn = document.createElement('div');
     garbageBtn.id = 'garbage-btn';
     garbageBtn.className = 'ribbon-btns';
+    //this event listener will remove the book from the library and display based on the index of the book in the myLibrary array
     garbageBtn.addEventListener('click', function removeBook() {
         myLibrary.pop(myLibrary.indexOf(garbageBtn.parentElement.parentElement.id));
         garbageBtn.parentElement.parentElement.remove();
+        console.log(myLibrary);
+
     });
 
     let readBtn = document.createElement('div');
