@@ -127,8 +127,8 @@ Book.prototype.buildCard = function () {
     garbageBtn.id = 'garbage-btn';
     garbageBtn.className = 'ribbon-btns';
     garbageBtn.addEventListener('click', function removeBook() {
+        myLibrary.pop(myLibrary.indexOf(garbageBtn.parentElement.parentElement.id));
         garbageBtn.parentElement.parentElement.remove();
-
     });
 
     let readBtn = document.createElement('div');
