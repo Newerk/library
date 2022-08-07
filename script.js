@@ -6,6 +6,8 @@ let inputValues = {
 }
 let myLibrary = [];
 
+let counter = 0;
+
 displayBooks();
 
 function Book(title, author, pages) {
@@ -43,6 +45,7 @@ function displayBooks() {
     const clearDisplay = () => {
         let bookDivs = document.querySelectorAll('.book');
         bookDivs.forEach(div => div.remove());
+        counter = 0;
     };
 
     clearDisplay();
@@ -51,7 +54,7 @@ function displayBooks() {
 
 
     myLibrary.forEach(el => {
-        el.index = indexCounter++;
+        el.index = counter = indexCounter++;
         buildCard(el.title, el.author, parseInt(el.pages));
         // console.log(el.title + " is index " + indexCounter++);
 
@@ -67,7 +70,7 @@ function displayBooks() {
 
 //to test this out, have this button console.log the book title that the button was pressed on
 function removeBook() {
-    myLibrary.findIndex(predicate)
+    // myLibrary
 
     //show index of book clicked
 }
@@ -97,7 +100,8 @@ person.returnName();
 
 Book.prototype.buildCard = function () {
     let card = document.createElement('div');
-    card.className = 'book';
+    card.className = `book`;
+    card.id = `${counter}`
 
     let bookCover = document.createElement('div');
     bookCover.className = "book-cover";
