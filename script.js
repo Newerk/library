@@ -1,5 +1,9 @@
 let main = document.querySelector('.main');
-let inputValues = {};
+let inputValues = {
+    bkTitle: document.querySelector("#bk_title").value,
+    bkAuthor: document.querySelector("#bk_author").value,
+    bkPages: document.querySelector("#bk_pages").value
+}
 let myLibrary = [];
 
 displayBooks();
@@ -10,12 +14,12 @@ function Book(title, author, pages) {
     this.pages = parseInt(pages);
 }
 
+
+
+
+
 function addBookToLibrary() {
-    inputValues = {
-        bkTitle: document.querySelector("#bk_title").value,
-        bkAuthor: document.querySelector("#bk_author").value,
-        bkPages: document.querySelector("#bk_pages").value
-    }
+
 
     let newBook = new Book(inputValues.bkTitle, inputValues.bkAuthor, parseInt(inputValues.bkPages));
 
@@ -44,22 +48,28 @@ function displayBooks() {
     clearDisplay();
 
     let indexCounter = 0;
+
+
     myLibrary.forEach(el => {
+        el.index = indexCounter++;
         buildCard(el.title, el.author, parseInt(el.pages));
-        console.log(el.title + " is index " + indexCounter++);
+        // console.log(el.title + " is index " + indexCounter++);
+
+        console.log('el.index' + el.index);
     });
 
 
 }
 
+
+//gonna call the index value of the book that the remove button was pressed on. it will then 
+//if indexOf(book title) === Book.index(), then delete book and call displayBooks() to update screen
+
+//to test this out, have this button console.log the book title that the button was pressed on
 function removeBook() {
-    myLibrary.forEach(el => {
-        listOfTitles.push(el.title);
-    })
+    myLibrary.findIndex(predicate)
 
-    // if(){//if NOT the title of book we want to delete, return a list of books that DONT include the title searched
-    console.log(listOfTitles);
-
+    //show index of book clicked
 }
 
 
@@ -115,6 +125,7 @@ Book.prototype.buildCard = function () {
     let garbageBtn = document.createElement('div');
     garbageBtn.id = 'garbage-btn';
     garbageBtn.className = 'ribbon-btns';
+    garbageBtn.addEventListener('click', removeBook);
 
     let readBtn = document.createElement('div');
     readBtn.id = 'read-btn';

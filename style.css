@@ -128,3 +128,7 @@ form {
     background-color: aqua;
     opacity: .3;
 }
+
+#garbage-btn:hover {
+    opacity: .8;
+}
