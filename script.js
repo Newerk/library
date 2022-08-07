@@ -1,11 +1,6 @@
 let main = document.querySelector('.main');
-let inputValues = {
-    bkTitle: document.querySelector("#bk_title").value,
-    bkAuthor: document.querySelector("#bk_author").value,
-    bkPages: document.querySelector("#bk_pages").value
-}
+let inputValues = {};
 let myLibrary = [];
-
 let counter = 0;
 
 displayBooks();
@@ -21,7 +16,11 @@ function Book(title, author, pages) {
 
 
 function addBookToLibrary() {
-
+    inputValues = {
+        bkTitle: document.querySelector("#bk_title").value,
+        bkAuthor: document.querySelector("#bk_author").value,
+        bkPages: document.querySelector("#bk_pages").value
+    }
 
     let newBook = new Book(inputValues.bkTitle, inputValues.bkAuthor, parseInt(inputValues.bkPages));
 
@@ -46,6 +45,7 @@ function displayBooks() {
         let bookDivs = document.querySelectorAll('.book');
         bookDivs.forEach(div => div.remove());
         counter = 0;
+
     };
 
     clearDisplay();
@@ -70,9 +70,18 @@ function displayBooks() {
 
 //to test this out, have this button console.log the book title that the button was pressed on
 function removeBook() {
-    // myLibrary
+    myLibrary.forEach(el => {
 
-    //show index of book clicked
+        if(el.index === counter) {
+            document.getElementById('5').remove();
+            displayBooks();
+
+        }
+
+    })
+
+ 
+    console.log();
 }
 
 
@@ -100,8 +109,9 @@ person.returnName();
 
 Book.prototype.buildCard = function () {
     let card = document.createElement('div');
-    card.className = `book`;
-    card.id = `${counter}`
+    card.className = 'book';
+    card.id = `${counter}`;
+
 
     let bookCover = document.createElement('div');
     bookCover.className = "book-cover";
