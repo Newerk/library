@@ -46,6 +46,7 @@ function displayBooks() {
         bookDivs.forEach(div => div.remove());
         counter = 0;
 
+
     };
 
     clearDisplay();
@@ -56,7 +57,6 @@ function displayBooks() {
     myLibrary.forEach(el => {
         el.index = counter = indexCounter++;
         buildCard(el.title, el.author, parseInt(el.pages));
-        // console.log(el.title + " is index " + indexCounter++);
 
         console.log('el.index' + el.index);
     });
@@ -69,20 +69,7 @@ function displayBooks() {
 //if indexOf(book title) === Book.index(), then delete book and call displayBooks() to update screen
 
 //to test this out, have this button console.log the book title that the button was pressed on
-function removeBook() {
-    myLibrary.forEach(el => {
 
-        if(el.index === counter) {
-            document.getElementById('5').remove();
-            displayBooks();
-
-        }
-
-    })
-
- 
-    console.log();
-}
 
 
 
@@ -139,7 +126,10 @@ Book.prototype.buildCard = function () {
     let garbageBtn = document.createElement('div');
     garbageBtn.id = 'garbage-btn';
     garbageBtn.className = 'ribbon-btns';
-    garbageBtn.addEventListener('click', removeBook);
+    garbageBtn.addEventListener('click', function removeBook() {
+        garbageBtn.parentElement.parentElement.remove();
+
+    });
 
     let readBtn = document.createElement('div');
     readBtn.id = 'read-btn';
