@@ -4,6 +4,7 @@
     outline: none;
 }
 
+
 body {
     display: grid;
     grid-template-columns: 1fr 4fr;
@@ -29,7 +30,6 @@ body {
 
 .sidebar {
 
-    position: fixed;
     top: 0;
     height: 100%;
     width: 20vw;
@@ -125,8 +125,27 @@ form {
 .ribbon-btns {
     width: 1.8rem;
     height: 100%;
-    background-color: aqua;
-    opacity: .3;
+    /* background-color: aqua; */
+    /* opacity: .3; */
+}
+
+#read-btn {
+    opacity: 0;
+    width: 1.3rem;
+    height: 1.3rem;
+    position: relative;
+    top: .23rem;
+    left: .05rem;
+
+}
+
+ #read-btn:checked:hover {
+    accent-color: #066D38 !important;    
+}
+
+#read-btn:checked {
+    opacity: 1;
+    accent-color: #066D38;
 }
 
 #garbage-btn:hover {

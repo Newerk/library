@@ -3,16 +3,13 @@ let inputValues = {};
 let myLibrary = [];
 let counter = 0;
 
-displayBooks();
+let readStorage = [];
 
 function Book(title, author, pages) {
     this.title = title;
     this.author = author;
     this.pages = parseInt(pages);
 }
-
-
-
 
 
 function addBookToLibrary() {
@@ -26,6 +23,7 @@ function addBookToLibrary() {
 
     myLibrary.push(newBook);
     console.log(myLibrary);
+
     displayBooks();
 
     document.querySelector('form').reset()
@@ -46,7 +44,6 @@ function displayBooks() {
         bookDivs.forEach(div => div.remove());
         counter = 0;
 
-
     };
 
     clearDisplay();
@@ -60,13 +57,18 @@ function displayBooks() {
 
         console.log('el.index' + el.index);
     });
+    readStorage.push(false);
+
+    console.log(readStorage);
 
 
 }
 
-//goal, build a construstor that will have a build card prototype
+
+
 
 Book.prototype.buildCard = function () {
+
     let card = document.createElement('div');
     card.className = 'book';
     card.id = `${counter}`;
@@ -101,14 +103,30 @@ Book.prototype.buildCard = function () {
     //this event listener will remove the book from the library and display based on the index of the book in the myLibrary array
     garbageBtn.addEventListener('click', function removeBook() {
         myLibrary.pop(myLibrary.indexOf(garbageBtn.parentElement.parentElement.id));
+        readStorage.pop(readStorage.indexOf(garbageBtn.parentElement.parentElement.id));//removes the read status  of a book based on the index
         garbageBtn.parentElement.parentElement.remove();
         console.log(myLibrary);
+        console.log(readStorage);
+
+
+
 
     });
 
-    let readBtn = document.createElement('div');
+    let readBtn = document.createElement('input');
     readBtn.id = 'read-btn';
     readBtn.className = 'ribbon-btns';
+    readBtn.type = 'checkbox';
+    readBtn.addEventListener('change', function (e) {
+        if (e.target.checked === true) {
+            readStorage.splice(readStorage.indexOf(readBtn.parentElement.parentElement.id), 1, `true at index_${readBtn.parentElement.parentElement.id}`);
+
+        } else {
+            readStorage.splice(readStorage.indexOf(readBtn.parentElement.parentElement.id), 1, `false at index_${readBtn.parentElement.parentElement.id}`);
+
+        }
+        console.log(readStorage);
+    })
 
     let favBtn = document.createElement('div');
     favBtn.id = 'fav-btn';
