@@ -5,17 +5,17 @@ let counter = 0;
 
 
 //make a button that will manually check the read button based on the index i input
-let test = document.querySelector('#has-read');
-test.addEventListener("click", function(){
-    let select = document.getElementById("0");
-    if (select.childNodes[1].childNodes[1].checked === false) {
-        select.childNodes[1].childNodes[1].checked= true;
+// let test = document.querySelector('#has-read');
+// test.addEventListener("click", function(){
+//     let select = document.getElementById("0");
+//     if (select.childNodes[1].childNodes[1].checked === false) {
+//         select.childNodes[1].childNodes[1].checked= true;
         
-    } else {
-        select.childNodes[1].childNodes[1].checked = false;
-    }
-    // console.log(select.childNodes[1].childNodes[1].checked);//access the read button and returns checked status(true or false)
-})
+//     } else {
+//         select.childNodes[1].childNodes[1].checked = false;
+//     }
+//     // console.log(select.childNodes[1].childNodes[1].checked);//access the read button and returns checked status(true or false)
+// })
 
 //maybe fill this array with objects. could make it easier to pull certain information based on the index
 let readStorage = [];
@@ -66,6 +66,14 @@ function displayBooks() {
         el.index = counter = indexCounter++;
          buildCard(el.title, el.author, parseInt(el.pages));
         el.read = readStorage[el.index];
+        let select = document.getElementById(el.index);
+        if (readStorage[el.index] === true) {
+            select.childNodes[1].childNodes[1].checked = true;
+            
+        } else {
+            select.childNodes[1].childNodes[1].checked = false;
+        }
+
     });
     readStorage.push(false);
 
