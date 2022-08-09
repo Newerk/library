@@ -3,6 +3,21 @@ let inputValues = {};
 let myLibrary = [];
 let counter = 0;
 
+
+//make a button that will manually check the read button based on the index i input
+let test = document.querySelector('#has-read');
+test.addEventListener("click", function(){
+    let select = document.getElementById("0");
+    if (select.childNodes[1].childNodes[1].checked === false) {
+        select.childNodes[1].childNodes[1].checked= true;
+        
+    } else {
+        select.childNodes[1].childNodes[1].checked = false;
+    }
+    // console.log(select.childNodes[1].childNodes[1].checked);//access the read button and returns checked status(true or false)
+})
+
+//maybe fill this array with objects. could make it easier to pull certain information based on the index
 let readStorage = [];
 
 function Book(title, author, pages) {
@@ -22,17 +37,14 @@ function addBookToLibrary() {
     let newBook = new Book(inputValues.bkTitle, inputValues.bkAuthor, parseInt(inputValues.bkPages));
 
     myLibrary.push(newBook);
-    console.table(myLibrary);
+    // console.table(myLibrary);
 
     displayBooks();
 
     document.querySelector('form').reset()
 }
 
-function buildCard(title, author, pages) {
-    let card = new Book(title, author, pages);
-    card.buildCard();
-}
+
 
 
 //displays every object in the library. This function will be invoked when myLibrary array is changed. This will also
@@ -46,28 +58,30 @@ function displayBooks() {
 
     };
 
-    clearDisplay();
+    clearDisplay();//for now, will only reset the counter so that it can be reiterated everytime a book is added or removed
 
     let indexCounter = 0;
 
-
     myLibrary.forEach(el => {
         el.index = counter = indexCounter++;
-        buildCard(el.title, el.author, parseInt(el.pages));
-
-        console.log('el.index' + el.index);
+         buildCard(el.title, el.author, parseInt(el.pages));
+        el.read = readStorage[el.index];
     });
     readStorage.push(false);
 
-    console.table(readStorage);
+
+    console.table(myLibrary);
 
 
 }
 
+function buildCard(title, author, pages) {
+    let card = new Book(title, author, pages);
+    card.create();
+}
 
 
-
-Book.prototype.buildCard = function () {
+Book.prototype.create = function () {
 
     let card = document.createElement('div');
     card.className = 'book';
@@ -102,11 +116,12 @@ Book.prototype.buildCard = function () {
     garbageBtn.className = 'ribbon-btns';
     //this event listener will remove the book from the library and display based on the index of the book in the myLibrary array
     garbageBtn.addEventListener('click', function removeBook() {
+        readStorage.splice(garbageBtn.parentElement.parentElement.id, 1);//delete the index of the read
         myLibrary.pop(myLibrary.indexOf(garbageBtn.parentElement.parentElement.id));
-        readStorage.pop(readStorage.indexOf(garbageBtn.parentElement.parentElement.id));//removes the read status  of a book based on the index
         garbageBtn.parentElement.parentElement.remove();
         console.table(myLibrary);
-        console.table(readStorage);
+        // console.table(readStorage);
+
 
     });
 
@@ -117,12 +132,16 @@ Book.prototype.buildCard = function () {
     readBtn.addEventListener('change', function (e) {
         if (e.target.checked === true) {
             readStorage.splice(readBtn.parentElement.parentElement.id, 1, true);
+            myLibrary[readBtn.parentElement.parentElement.id].read = true;
 
         } else {
             readStorage.splice(readBtn.parentElement.parentElement.id, 1, false);
+            myLibrary[readBtn.parentElement.parentElement.id].read = false;
+
 
         }
         console.table(readStorage);
+        console.table(myLibrary);
     })
 
     let favBtn = document.createElement('div');
