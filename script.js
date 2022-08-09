@@ -22,7 +22,7 @@ function addBookToLibrary() {
     let newBook = new Book(inputValues.bkTitle, inputValues.bkAuthor, parseInt(inputValues.bkPages));
 
     myLibrary.push(newBook);
-    console.log(myLibrary);
+    console.table(myLibrary);
 
     displayBooks();
 
@@ -59,7 +59,7 @@ function displayBooks() {
     });
     readStorage.push(false);
 
-    console.log(readStorage);
+    console.table(readStorage);
 
 
 }
@@ -105,11 +105,8 @@ Book.prototype.buildCard = function () {
         myLibrary.pop(myLibrary.indexOf(garbageBtn.parentElement.parentElement.id));
         readStorage.pop(readStorage.indexOf(garbageBtn.parentElement.parentElement.id));//removes the read status  of a book based on the index
         garbageBtn.parentElement.parentElement.remove();
-        console.log(myLibrary);
-        console.log(readStorage);
-
-
-
+        console.table(myLibrary);
+        console.table(readStorage);
 
     });
 
@@ -119,13 +116,13 @@ Book.prototype.buildCard = function () {
     readBtn.type = 'checkbox';
     readBtn.addEventListener('change', function (e) {
         if (e.target.checked === true) {
-            readStorage.splice(readStorage.indexOf(readBtn.parentElement.parentElement.id), 1, `true at index_${readBtn.parentElement.parentElement.id}`);
+            readStorage.splice(readBtn.parentElement.parentElement.id, 1, true);
 
         } else {
-            readStorage.splice(readStorage.indexOf(readBtn.parentElement.parentElement.id), 1, `false at index_${readBtn.parentElement.parentElement.id}`);
+            readStorage.splice(readBtn.parentElement.parentElement.id, 1, false);
 
         }
-        console.log(readStorage);
+        console.table(readStorage);
     })
 
     let favBtn = document.createElement('div');
