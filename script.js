@@ -21,10 +21,10 @@ function addBookToLibrary() {
         bkPages: document.querySelector("#bk_pages").value
     }
 
+
     let newBook = new Book(inputValues.bkTitle, inputValues.bkAuthor, parseInt(inputValues.bkPages));
 
     myLibrary.push(newBook);
-    // console.table(myLibrary);
 
     displayBooks();
 
@@ -48,6 +48,10 @@ function displayBooks() {
 
     myLibrary.forEach(el => {
         el.index = counter = indexCounter++;
+
+        if (isNaN(el.pages)) {
+            el.pages = 'undefined';
+        }
         buildCard(el.title, el.author, parseInt(el.pages));
         el.read = readStorage[el.index];
 
@@ -79,7 +83,7 @@ function buildCard(title, author, pages) {
     card.create();
 }
 
-
+//this prototype creates the content of the book based on the current iterated object values
 Book.prototype.create = function () {
 
     let card = document.createElement('div');
@@ -100,7 +104,12 @@ Book.prototype.create = function () {
 
     let pages = document.createElement('div');
     pages.className = 'pages';
-    pages.textContent = this.pages;
+    if (isNaN(this.pages)) { //makes the pages context blank if no page number is inputed by user
+        pages.textContent = undefined;
+
+    } else {
+        pages.textContent = this.pages;
+    }
 
     bookCover.appendChild(title);
     bookCover.appendChild(author);
@@ -115,11 +124,11 @@ Book.prototype.create = function () {
     garbageBtn.className = 'ribbon-btns';
     //this event listener will remove the book from the library and display based on the index of the book in the myLibrary array
     garbageBtn.addEventListener('click', function removeBook() {
-        readStorage.splice(readBtn.parentElement.parentElement.id, 1);//delete the index of the read
-        myLibrary.splice(readBtn.parentElement.parentElement.id, 1);
+        readStorage.splice(readBtn.parentElement.parentElement.id, 1);//delete the read status based on index
+        myLibrary.splice(readBtn.parentElement.parentElement.id, 1);//delete the book from library based on index
         garbageBtn.parentElement.parentElement.remove();
         displayBooks();
-        if (readStorage.length > myLibrary.length) {
+        if (readStorage.length > myLibrary.length) {//this if statement prevents the read status storage from continously growing even after the delete button is used
             readStorage.pop()
         }
         console.table(myLibrary);
@@ -132,7 +141,7 @@ Book.prototype.create = function () {
     readBtn.id = 'read-btn';
     readBtn.className = 'ribbon-btns';
     readBtn.type = 'checkbox';
-    readBtn.addEventListener('change', function (e) {
+    readBtn.addEventListener('change', function (e) {//inputs true or false in the desired index of the read status storage array
         if (e.target.checked === true) {
             readStorage.splice(readBtn.parentElement.parentElement.id, 1, true);
             myLibrary[readBtn.parentElement.parentElement.id].read = true;
