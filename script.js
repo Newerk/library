@@ -134,6 +134,9 @@ Book.prototype.create = function () {
         myLibrary.splice(readBtn.parentElement.parentElement.id, 1);
         garbageBtn.parentElement.parentElement.remove();
         displayBooks();
+        if (readStorage.length > myLibrary.length) {
+            readStorage.pop()
+        }
         console.table(myLibrary);
         console.table(readStorage);
 
