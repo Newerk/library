@@ -4,19 +4,6 @@ let myLibrary = [];
 let counter = 0;
 
 
-//make a button that will manually check the read button based on the index i input
-// let test = document.querySelector('#has-read');
-// test.addEventListener("click", function(){
-//     let select = document.getElementById("0");
-//     if (select.childNodes[1].childNodes[1].checked === false) {
-//         select.childNodes[1].childNodes[1].checked= true;
-
-//     } else {
-//         select.childNodes[1].childNodes[1].checked = false;
-//     }
-//     // console.log(select.childNodes[1].childNodes[1].checked);//access the read button and returns checked status(true or false)
-// })
-
 //maybe fill this array with objects. could make it easier to pull certain information based on the index
 let readStorage = [];
 
@@ -43,8 +30,6 @@ function addBookToLibrary() {
 
     document.querySelector('form').reset()
 }
-
-
 
 
 //displays every object in the library. This function will be invoked when myLibrary array is changed. This will also
@@ -162,14 +147,9 @@ Book.prototype.create = function () {
         console.table(myLibrary);
     })
 
-    let favBtn = document.createElement('div');
-    favBtn.id = 'fav-btn';
-    favBtn.className = 'ribbon-btns';
 
     iconContainer.appendChild(garbageBtn);
     iconContainer.appendChild(readBtn);
-    iconContainer.appendChild(favBtn);
-
 
     card.appendChild(bookCover);
     card.appendChild(iconContainer);

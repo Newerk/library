@@ -61,7 +61,7 @@ body {
 
 .book {
     height: 13rem;
-    background-image: url('/book-card-ribbons.svg');
+    background-image: url('/book-card-ribbons-no-fav-btn.svg');
     background-repeat: no-repeat;
     background-size: contain;
     color: darkorange;
@@ -118,7 +118,7 @@ form {
     margin-left: -.2rem;
 
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     padding-top: .15rem;
 }
 
@@ -135,13 +135,18 @@ form {
     height: 1.3rem;
     position: relative;
     top: .23rem;
-    left: .05rem;
 
 }
 
- #read-btn:checked:hover {
-    accent-color: #066D38 !important;    
+#read-btn:checked:hover {
+    accent-color: #0aa153 !important;
+
 }
+
+#read-btn:checked:active {
+    opacity: 0;
+}
+
 
 #read-btn:checked {
     opacity: 1;
