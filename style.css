@@ -106,6 +106,8 @@ button:active {
     grid-column: 1 / 6;
     word-wrap: break-word;
     font-weight: 800;
+    padding-left: .3rem;
+    padding-right: .3rem;
 
 }
 
