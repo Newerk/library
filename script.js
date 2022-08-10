@@ -10,7 +10,7 @@ let counter = 0;
 //     let select = document.getElementById("0");
 //     if (select.childNodes[1].childNodes[1].checked === false) {
 //         select.childNodes[1].childNodes[1].checked= true;
-        
+
 //     } else {
 //         select.childNodes[1].childNodes[1].checked = false;
 //     }
@@ -55,30 +55,36 @@ function displayBooks() {
         let bookDivs = document.querySelectorAll('.book');
         bookDivs.forEach(div => div.remove());
         counter = 0;
-
     };
 
     clearDisplay();//for now, will only reset the counter so that it can be reiterated everytime a book is added or removed
 
     let indexCounter = 0;
-
+ 
     myLibrary.forEach(el => {
         el.index = counter = indexCounter++;
-         buildCard(el.title, el.author, parseInt(el.pages));
+        buildCard(el.title, el.author, parseInt(el.pages));
         el.read = readStorage[el.index];
+
+
+        /*----this block of code will place the appropiate read status for each book by matching the index bewteen myLibrary and readStorage-----*/
         let select = document.getElementById(el.index);
         if (readStorage[el.index] === true) {
             select.childNodes[1].childNodes[1].checked = true;
-            
+
         } else {
             select.childNodes[1].childNodes[1].checked = false;
         }
+        /*---------------------------------------------------------------------------------------------------------------------------------------*/
 
     });
     readStorage.push(false);
 
 
+
     console.table(myLibrary);
+    console.table(readStorage);
+
 
 
 }
@@ -124,11 +130,12 @@ Book.prototype.create = function () {
     garbageBtn.className = 'ribbon-btns';
     //this event listener will remove the book from the library and display based on the index of the book in the myLibrary array
     garbageBtn.addEventListener('click', function removeBook() {
-        readStorage.splice(garbageBtn.parentElement.parentElement.id, 1);//delete the index of the read
-        myLibrary.pop(myLibrary.indexOf(garbageBtn.parentElement.parentElement.id));
+        readStorage.splice(readBtn.parentElement.parentElement.id, 1);//delete the index of the read
+        myLibrary.splice(readBtn.parentElement.parentElement.id, 1);
         garbageBtn.parentElement.parentElement.remove();
+        displayBooks();
         console.table(myLibrary);
-        // console.table(readStorage);
+        console.table(readStorage);
 
 
     });
