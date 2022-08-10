@@ -79,7 +79,7 @@ button:active {
 
 .book {
     height: 13rem;
-    background-image: url('book-card-ribbons-no-fav-btn.svg');
+    background-image: url(book-card-ribbons-no-fav-btn.svg);
     background-repeat: no-repeat;
     background-size: contain;
     color: darkorange;
