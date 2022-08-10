@@ -1,13 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;700&display=swap');
+
+
 * {
     margin: 0;
     padding: 0;
     outline: none;
+    font-family: 'EB Garamond', serif;
+
 }
 
 
 body {
     display: grid;
-    grid-template-columns: 1fr 4fr;
     grid-template-rows: 6rem 1fr;
     height: 100vh;
     background-color: #282F39;
@@ -28,7 +32,7 @@ body {
     grid-area: 1 / 1 / 2 / 3;
 }
 
-.sidebar {
+/* .sidebar {
 
     top: 0;
     height: 100%;
@@ -40,7 +44,7 @@ body {
     display: grid;
     grid-template-rows: 6rem 1fr;
 
-}
+} */
 
 .red-bg {
     background-color: rgb(131, 37, 37);
@@ -48,13 +52,13 @@ body {
 
 .main {
     background-color: #282F39;
-    grid-area: 2 / 2 / 3 / 3;
+    grid-area: 1 / 1 / 2 / 2;
 
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(9.8rem, 9.8rem));
     grid-template-rows: max-content;
 
-    padding: 6rem 1rem 6rem 6rem;
+    padding: 10rem 2rem 2rem 6rem;
     gap: 4rem;
 
 }
@@ -86,7 +90,7 @@ body {
     grid-row: 2 / 3;
     grid-column: 1 / 6;
     word-wrap: break-word;
-
+    font-weight: 800;
 
 }
 
@@ -100,6 +104,9 @@ body {
 .pages {
     grid-row: 6 / 7;
     grid-column: 4 / 6;
+
+    padding-bottom: .3rem;
+    padding-left: .9rem;
 
 }
 
@@ -125,8 +132,7 @@ form {
 .ribbon-btns {
     width: 1.8rem;
     height: 100%;
-    /* background-color: aqua; */
-    /* opacity: .3; */
+    z-index: 1;
 }
 
 #read-btn {
@@ -151,8 +157,4 @@ form {
 #read-btn:checked {
     opacity: 1;
     accent-color: #066D38;
-}
-
-#garbage-btn:hover {
-    opacity: .8;
 }

@@ -45,7 +45,7 @@ function displayBooks() {
     clearDisplay();//for now, will only reset the counter so that it can be reiterated everytime a book is added or removed
 
     let indexCounter = 0;
- 
+
     myLibrary.forEach(el => {
         el.index = counter = indexCounter++;
         buildCard(el.title, el.author, parseInt(el.pages));
