@@ -83,7 +83,7 @@ button:active {
     background-repeat: no-repeat;
     background-size: contain;
     color: darkorange;
-    z-index: 1;
+    z-index: 0;
 
     display: grid;
     grid-template-rows: 1fr 2.4rem;
