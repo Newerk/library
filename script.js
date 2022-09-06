@@ -7,10 +7,97 @@ let counter = 0;
 //maybe fill this array with objects. could make it easier to pull certain information based on the index
 let readStorage = [];
 
-function Book(title, author, pages) {
-    this.title = title;
-    this.author = author;
-    this.pages = parseInt(pages);
+class Book {
+    constructor(title, author, pages) {
+        this.title = title;
+        this.author = author;
+        this.pages = parseInt(pages);
+    }
+
+    //this prototype creates the content of the book based on the current iterated object values
+    create() {
+
+        let card = document.createElement('div');
+        card.className = 'book';
+        card.id = `${counter}`;
+
+
+        let bookCover = document.createElement('div');
+        bookCover.className = "book-cover";
+
+        let title = document.createElement('div');
+        title.className = 'title';
+        title.textContent = this.title;
+
+        let author = document.createElement('div');
+        author.className = 'author';
+        author.textContent = this.author;
+
+        let pages = document.createElement('div');
+        pages.className = 'pages';
+        if (isNaN(this.pages)) { //makes the pages context blank if no page number is inputed by user
+            pages.textContent = undefined;
+
+        } else {
+            pages.textContent = this.pages;
+        }
+
+        bookCover.appendChild(title);
+        bookCover.appendChild(author);
+        bookCover.appendChild(pages);
+
+
+        let iconContainer = document.createElement('div');
+        iconContainer.className = "icon-container";
+
+        let garbageBtn = document.createElement('div');
+        garbageBtn.id = 'garbage-btn';
+        garbageBtn.className = 'ribbon-btns';
+        //this event listener will remove the book from the library and display based on the index of the book in the myLibrary array
+        garbageBtn.addEventListener('click', function removeBook() {
+            readStorage.splice(readBtn.parentElement.parentElement.id, 1);//delete the read status based on index
+            myLibrary.splice(readBtn.parentElement.parentElement.id, 1);//delete the book from library based on index
+            garbageBtn.parentElement.parentElement.remove();
+            displayBooks();
+            if (readStorage.length > myLibrary.length) {//this if statement prevents the read status storage from continously growing even after the delete button is used
+                readStorage.pop()
+            }
+            console.table(myLibrary);
+            console.table(readStorage);
+
+
+        });
+
+        let readBtn = document.createElement('input');
+        readBtn.id = 'read-btn';
+        readBtn.className = 'ribbon-btns';
+        readBtn.type = 'checkbox';
+        readBtn.addEventListener('change', function (e) {//inputs true or false in the desired index of the read status storage array
+            if (e.target.checked === true) {
+                readStorage.splice(readBtn.parentElement.parentElement.id, 1, true);
+                myLibrary[readBtn.parentElement.parentElement.id].read = true;
+
+            } else {
+                readStorage.splice(readBtn.parentElement.parentElement.id, 1, false);
+                myLibrary[readBtn.parentElement.parentElement.id].read = false;
+
+
+            }
+            console.table(readStorage);
+            console.table(myLibrary);
+        })
+
+
+        iconContainer.appendChild(garbageBtn);
+        iconContainer.appendChild(readBtn);
+
+        card.appendChild(bookCover);
+        card.appendChild(iconContainer);
+
+        main.append(card);
+
+
+    }
 }
 
 
@@ -83,88 +170,5 @@ function buildCard(title, author, pages) {
     card.create();
 }
 
-//this prototype creates the content of the book based on the current iterated object values
-Book.prototype.create = function () {
 
-    let card = document.createElement('div');
-    card.className = 'book';
-    card.id = `${counter}`;
-
-
-    let bookCover = document.createElement('div');
-    bookCover.className = "book-cover";
-
-    let title = document.createElement('div');
-    title.className = 'title';
-    title.textContent = this.title;
-
-    let author = document.createElement('div');
-    author.className = 'author';
-    author.textContent = this.author;
-
-    let pages = document.createElement('div');
-    pages.className = 'pages';
-    if (isNaN(this.pages)) { //makes the pages context blank if no page number is inputed by user
-        pages.textContent = undefined;
-
-    } else {
-        pages.textContent = this.pages;
-    }
-
-    bookCover.appendChild(title);
-    bookCover.appendChild(author);
-    bookCover.appendChild(pages);
-
-
-    let iconContainer = document.createElement('div');
-    iconContainer.className = "icon-container";
-
-    let garbageBtn = document.createElement('div');
-    garbageBtn.id = 'garbage-btn';
-    garbageBtn.className = 'ribbon-btns';
-    //this event listener will remove the book from the library and display based on the index of the book in the myLibrary array
-    garbageBtn.addEventListener('click', function removeBook() {
-        readStorage.splice(readBtn.parentElement.parentElement.id, 1);//delete the read status based on index
-        myLibrary.splice(readBtn.parentElement.parentElement.id, 1);//delete the book from library based on index
-        garbageBtn.parentElement.parentElement.remove();
-        displayBooks();
-        if (readStorage.length > myLibrary.length) {//this if statement prevents the read status storage from continously growing even after the delete button is used
-            readStorage.pop()
-        }
-        console.table(myLibrary);
-        console.table(readStorage);
-
-
-    });
-
-    let readBtn = document.createElement('input');
-    readBtn.id = 'read-btn';
-    readBtn.className = 'ribbon-btns';
-    readBtn.type = 'checkbox';
-    readBtn.addEventListener('change', function (e) {//inputs true or false in the desired index of the read status storage array
-        if (e.target.checked === true) {
-            readStorage.splice(readBtn.parentElement.parentElement.id, 1, true);
-            myLibrary[readBtn.parentElement.parentElement.id].read = true;
-
-        } else {
-            readStorage.splice(readBtn.parentElement.parentElement.id, 1, false);
-            myLibrary[readBtn.parentElement.parentElement.id].read = false;
-
-
-        }
-        console.table(readStorage);
-        console.table(myLibrary);
-    })
-
-
-    iconContainer.appendChild(garbageBtn);
-    iconContainer.appendChild(readBtn);
-
-    card.appendChild(bookCover);
-    card.appendChild(iconContainer);
-
-    main.append(card);
-
-
-}
 
