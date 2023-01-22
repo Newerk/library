@@ -62,8 +62,6 @@ class Book {
             if (readStorage.length > myLibrary.length) {//this if statement prevents the read status storage from continously growing even after the delete button is used
                 readStorage.pop()
             }
-            console.table(myLibrary);
-            console.table(readStorage);
 
 
         });
@@ -83,8 +81,6 @@ class Book {
 
 
             }
-            console.table(readStorage);
-            console.table(myLibrary);
         })
 
 
@@ -111,64 +107,71 @@ function addBookToLibrary() {
 
     let newBook = new Book(inputValues.bkTitle, inputValues.bkAuthor, parseInt(inputValues.bkPages));
 
-    myLibrary.push(newBook);
 
-    displayBooks();
-
-    document.querySelector('form').reset()
-}
-
-
-//displays every object in the library. This function will be invoked when myLibrary array is changed. This will also
-//iterate through the myLibrary array and properly assign index values to the books objects. This can be used
-//to grab the position of the book so that it can be removed from the array list with my function remove()
-function displayBooks() {
-    const clearDisplay = () => {
-        let bookDivs = document.querySelectorAll('.book');
-        bookDivs.forEach(div => div.remove());
-        counter = 0;
-    };
-
-    clearDisplay();//for now, will only reset the counter so that it can be reiterated everytime a book is added or removed
-
-    let indexCounter = 0;
-
-    myLibrary.forEach(el => {
-        el.index = counter = indexCounter++;
-
-        if (isNaN(el.pages)) {
-            el.pages = 'undefined';
-        }
-        buildCard(el.title, el.author, parseInt(el.pages));
-        el.read = readStorage[el.index];
-
-
-        /*----this block of code will place the appropiate read status for each book by matching the index bewteen myLibrary and readStorage-----*/
-        let select = document.getElementById(el.index);
-        if (readStorage[el.index] === true) {
-            select.childNodes[1].childNodes[1].checked = true;
-
+    if (document.getElementById("bk_pages").validity.rangeUnderflow) {
+        alert('Book cannot have less than 1 page');
+    } else 
+        if (inputValues.bkTitle === '' || inputValues.bkAuthor === '' || inputValues.bkPages === '' ||
+            document.getElementById("bk_title").validity.tooShort || document.getElementById("bk_author").validity.tooShort ||
+            document.getElementById("bk_title").validity.tooShort) {
+            alert('Make Sure Everything is Filled In');
         } else {
-            select.childNodes[1].childNodes[1].checked = false;
+            myLibrary.push(newBook);
+            displayBooks();
+
         }
-        /*---------------------------------------------------------------------------------------------------------------------------------------*/
 
-    });
-    readStorage.push(false);
-
+        document.querySelector('form').reset()
+    }
 
 
-    console.table(myLibrary);
-    console.table(readStorage);
+    //displays every object in the library. This function will be invoked when myLibrary array is changed. This will also
+    //iterate through the myLibrary array and properly assign index values to the books objects. This can be used
+    //to grab the position of the book so that it can be removed from the array list with my function remove()
+    function displayBooks() {
+        const clearDisplay = () => {
+            let bookDivs = document.querySelectorAll('.book');
+            bookDivs.forEach(div => div.remove());
+            counter = 0;
+        };
+
+        clearDisplay();//for now, will only reset the counter so that it can be reiterated everytime a book is added or removed
+
+        let indexCounter = 0;
+
+        myLibrary.forEach(el => {
+            el.index = counter = indexCounter++;
+
+            if (isNaN(el.pages)) {
+                el.pages = 'undefined';
+            }
+            buildCard(el.title, el.author, parseInt(el.pages));
+            el.read = readStorage[el.index];
+
+
+            /*----this block of code will place the appropiate read status for each book by matching the index bewteen myLibrary and readStorage-----*/
+            let select = document.getElementById(el.index);
+            if (readStorage[el.index] === true) {
+                select.childNodes[1].childNodes[1].checked = true;
+
+            } else {
+                select.childNodes[1].childNodes[1].checked = false;
+            }
+            /*---------------------------------------------------------------------------------------------------------------------------------------*/
+
+        });
+        readStorage.push(false);
 
 
 
-}
 
-function buildCard(title, author, pages) {
-    let card = new Book(title, author, pages);
-    card.create();
-}
+
+    }
+
+    function buildCard(title, author, pages) {
+        let card = new Book(title, author, pages);
+        card.create();
+    }
 
 
 

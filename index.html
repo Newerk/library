@@ -16,15 +16,15 @@
 
         <form>
             <label for="bk_title">Title
-                <input type="text" name="title" id="bk_title" required>
+                <input type="text" name="title" id="bk_title" minlength="1" required>
             </label>
 
             <label for="bk_author">Author
-                <input type="text" name="author" id="bk_author" required>
+                <input type="text" name="author" id="bk_author" minlength="2" required>
             </label>
 
             <label for="bk_pages">Pages
-                <input type="number" name="pages" id="bk_pages" required>
+                <input type="number" name="pages" id="bk_pages" minlength="1" min="1" required>
             </label>
 
         </form>
