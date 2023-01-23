@@ -3,6 +3,11 @@ let inputValues = {};
 let myLibrary = [];
 let counter = 0;
 
+const titleInput = document.querySelector('#bk_title');
+const authorInput = document.querySelector('#bk_author');
+const pageInput = document.querySelector('#bk_pages');
+checkValidity();
+
 
 //maybe fill this array with objects. could make it easier to pull certain information based on the index
 let readStorage = [];
@@ -78,11 +83,8 @@ class Book {
             } else {
                 readStorage.splice(readBtn.parentElement.parentElement.id, 1, false);
                 myLibrary[readBtn.parentElement.parentElement.id].read = false;
-
-
             }
         })
-
 
         iconContainer.appendChild(garbageBtn);
         iconContainer.appendChild(readBtn);
@@ -107,82 +109,18 @@ function addBookToLibrary() {
 
     let newBook = new Book(inputValues.bkTitle, inputValues.bkAuthor, parseInt(inputValues.bkPages));
 
-    switch (true) {
-        case document.getElementById("bk_pages").validity.rangeUnderflow:
-            document.getElementById("bk_pages").classList.add('invalid')
-            break;
+    document.querySelectorAll("input").forEach(el => {
+        el.classList.remove('invalid');
+    })
 
-        case (inputValues.bkTitle === '' && inputValues.bkAuthor === '' && inputValues.bkPages === ''):
-            document.querySelectorAll('input').forEach(el => el.classList.add('invalid'))
+    if (titleInput.validity.valid && authorInput.validity.valid && pageInput.validity.valid) {
 
-            break;
+        myLibrary.push(newBook);
+        checkValidity();
+        displayBooks();
 
-        case (inputValues.bkTitle === '' && inputValues.bkAuthor === '' && inputValues.bkPages !== ''):
-            document.getElementById("bk_title").classList.add('invalid');
-            document.getElementById("bk_author").classList.add('invalid');
-
-
-            break;
-
-        case (inputValues.bkTitle === '' && inputValues.bkAuthor !== '' && inputValues.bkPages !== ''):
-            document.getElementById("bk_title").classList.add('invalid');
-
-
-            break;
-
-        case (inputValues.bkTitle === '' && inputValues.bkAuthor !== '' && inputValues.bkPages === ''):
-            document.getElementById("bk_title").classList.add('invalid');
-            document.getElementById("bk_pages").classList.add('invalid');
-
-            break;
-
-        case (inputValues.bkTitle !== '' && inputValues.bkAuthor !== '' && inputValues.bkPages === ''):
-            document.getElementById("bk_pages").classList.add('invalid');
-
-            break;
-
-
-        case inputValues.bkTitle === '':
-            document.getElementById('bk_title').classList.add('invalid');
-
-            break;
-
-        case inputValues.bkAuthor === '':
-            document.getElementById('bk_author').classList.add('invalid');
-
-            break;
-
-        case inputValues.bkPages === '':
-            document.getElementById('bk_pages').classList.add('invalid');
-
-            break;
-
-
-        case document.getElementById("bk_title").validity.tooShort:
-            document.getElementById('bk_title').classList.add('invalid');
-
-            break;
-
-        case document.getElementById("bk_author").validity.tooShort:
-            document.getElementById('bk_author').classList.add('invalid');
-
-            break;
-
-        case document.getElementById("bk_pages").validity.tooShort:
-            document.getElementById('bk_pages').classList.add('invalid');
-
-            break;
-
-        default:
-            myLibrary.push(newBook);
-            displayBooks();
-            document.querySelectorAll("input").forEach(el => {
-                el.classList.remove('invalid');
-                el.setAttribute('style', 'border-bottom: 6px solid darkorange;')
-            })
-
-
-            break;
+    } else {
+        console.log('input(s) not valid')
     }
 
     document.querySelector('form').reset()
@@ -226,10 +164,6 @@ function displayBooks() {
     });
     readStorage.push(false);
 
-
-
-
-
 }
 
 function buildCard(title, author, pages) {
@@ -237,5 +171,16 @@ function buildCard(title, author, pages) {
     card.create();
 }
 
+function checkValidity() {
+    [titleInput, authorInput, pageInput].forEach(el => el.addEventListener('input', function (e) {
+        if (e.target.validity.tooShort) {
+            e.target.classList.add('invalid');
+        }
 
+        if (e.target.id === 'bk_pages' && e.target.validity.rangeUnderflow) {
+            e.target.classList.add('invalid');
+        }
+
+    }))
+}
 
